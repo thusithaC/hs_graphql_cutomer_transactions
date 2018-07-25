@@ -22,4 +22,6 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.4" % Test
 )
 
+libraryDependencies <+= scalaVersion("org.scala-lang" % "scala-compiler" % _ )
+
 Revolver.settings
