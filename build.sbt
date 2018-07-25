@@ -1,3 +1,7 @@
+import com.typesafe.sbt.packager.archetypes.{JavaServerAppPackaging}
+
+
+
 name := "customertransactions"
 
 version := "1.0"
@@ -5,6 +9,17 @@ version := "1.0"
 description := "GraphQL server with akka-http and sangria"
 
 scalaVersion := "2.12.3"
+
+
+lazy val root = (project in file(".")).
+  enablePlugins(JavaServerAppPackaging).
+  settings(
+    name := "Scala.js Tutorial",
+    scalaVersion := "2.12.3",
+    version := "1.0"
+  )
+
+
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
