@@ -13,13 +13,6 @@ import sangria.macros.derive._
 
 object SchemaDef {
 
-  //category has relation to product
-  //val transactionAccountRel = Relation[Transaction, String]("transaction-account", t => Seq(t.account.accountId))
-  //val accountTransactionRel = Relation[Account, String]("account-transaction", a => a.transactions.map(_.transactionId))
-  //val customerAccountRel = Relation[Customer, String]("customer-account", c => c.accounts.map(_.accountId))
-  //val accountCustomerRel = Relation[Account, String]("account-customer", a => Seq(a.customerId))
-
-
   val TransactionType = ObjectType[Unit, Transaction](
     "Transaction",
     fields[Unit, Transaction](

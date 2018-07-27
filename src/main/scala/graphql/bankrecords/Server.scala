@@ -26,7 +26,7 @@ object Server extends App {
   import actorSystem.dispatcher
   import scala.concurrent.duration._
 
-  logger("Starting GRAPHQL server...")
+  Logger.info("Starting GRAPHQL server...")
 
   //shutdown Hook
   scala.sys.addShutdownHook(() -> shutdown())
@@ -42,19 +42,17 @@ object Server extends App {
 
   Http().bindAndHandle(route, "0.0.0.0", PORT)
 
-  logger(s"open a browser with URL: http://localhost:$PORT")
-  logger(s"or POST queries to http://localhost:$PORT/graphql")
+  Logger.info(s"open a browser with URL: http://localhost:$PORT")
+  Logger.info(s"or POST queries to http://localhost:$PORT/graphql")
 
   def shutdown(): Unit = {
 
-    logger("Terminating...", YELLOW)
+    Logger.info("Terminating...", YELLOW)
     actorSystem.terminate()
     Await.result(actorSystem.whenTerminated, 30 seconds)
-    logger("Terminated... Bye", YELLOW)
+    Logger.info("Terminated... Bye", YELLOW)
   }
 
-  private def logger(message: String, color: String = GREEN): Unit = {
-    println(color + message)
-  }
+
 }
 

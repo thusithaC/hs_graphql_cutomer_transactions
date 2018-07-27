@@ -36,24 +36,23 @@ class HTTPGetRequest(val urlString : String, queryParams : Map[String, String]) 
 
     content onSuccess {
 
-      //Step 5 : Request was successful & response was OK
       case x if x.getStatusCode() == 200 =>
-        //Step 6 : Response was OK, read the contents
+        Logger.info("Rest api call success")
         f(x.getResponseBody)
-      case y => //Step 7 : Response is not OK, read the error
-        println("Failed with status code" + y.getStatusCode())
+      case y =>
+        Logger.error(s"Failed with status code ${y.getStatusCode()}" )
     }
 
-    //Step 7 : Request did not complete successfully, read the error
     content onFailure {
       case x =>
-        println("Failed but"); println(x.getMessage)
+        Logger.error("Failed but")
+        Logger.error(x.getMessage)
     }
   }
 
   def getSync(waitMiliSec: Long): Option[String] = {
     import scala.concurrent.duration._
-    println(builtRequest.toString)
+    Logger.info(s"sending request ${builtRequest.toString}")
     val content = Http.default(builtRequest)
     val response = content map {
       data => Some(data.getResponseBody)

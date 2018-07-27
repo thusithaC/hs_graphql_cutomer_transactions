@@ -27,7 +27,7 @@ class RestDAO {
 
   def getAccountTransactions(accountId : String ) : List[Transaction] = {
     val urlPath = transactionsService + transactionsForAccountPath
-    println(urlPath, accountId)
+    Logger.info(s" ${urlPath} with accountId ${accountId}")
     val queryProperties = Map("accountId" -> accountId)
 
     val result = resultBuilder[List[Transaction]](urlPath, queryProperties, read[List[Transaction]])
@@ -36,7 +36,7 @@ class RestDAO {
 
   def getCustomerAccounts(customerId : String) : List[String] = {
     val urlPath = customersService + accountsForCustomerPath
-    println(urlPath, customerId)
+    Logger.info(s" ${urlPath} with customerId ${customerId}")
     val queryProperties = Map("customerId" -> customerId)
 
     val result = resultBuilder[List[String]](urlPath, queryProperties, read[List[String]])
@@ -53,7 +53,7 @@ class RestDAO {
 
   def getAllCustomers() : List[Customer] = {
     val urlPath = customersService + allCustomersPath
-    println(urlPath)
+    Logger.info(urlPath)
     val queryProperties = Map.empty[String, String]
 
     val result = resultBuilder[List[Customer]](urlPath, queryProperties, read[List[Customer]])
@@ -62,7 +62,7 @@ class RestDAO {
 
   def getAllTransactions() : List[Transaction] = {
     val urlPath = transactionsService + allTransactionsPath
-    println(urlPath)
+    Logger.info(urlPath)
     val queryProperties = Map.empty[String, String]
 
     val result = resultBuilder[List[Transaction]](urlPath, queryProperties, read[List[Transaction]])
@@ -71,7 +71,7 @@ class RestDAO {
 
   def getCustomerById(customerId : String) : Option[Customer] = {
     val urlPath = customersService + customerByIdPath
-    println(urlPath, customerId)
+    Logger.info(s" ${urlPath} with customerId ${customerId}")
     val queryProperties = Map("customerId" -> customerId)
 
     resultBuilder[Customer](urlPath, queryProperties, read[Customer])
@@ -79,9 +79,8 @@ class RestDAO {
 
   def getTransactionById(transactionId : String) : Option[Transaction] = {
     val urlPath = customersService + transactionByIdPath
-    println(urlPath, transactionId)
+    Logger.info(s" ${urlPath} with transactionId ${transactionId}")
     val queryProperties = Map("transactionId" -> transactionId)
-
     resultBuilder[Transaction](urlPath, queryProperties, read[Transaction])
   }
 
