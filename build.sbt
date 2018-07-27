@@ -32,7 +32,12 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.2.1",
   "com.typesafe.slick" %% "slick-hikaricp" % "3.2.1",
   "org.slf4j" % "slf4j-nop" % "1.6.6",
-  "com.h2database" % "h2" % "1.4.196",
+
+  "org.json4s" %% "json4s-native" % "3.6.0", //json4s support for working with json serialization/deserialization
+  "org.json4s" %% "json4s-jackson" % "3.6.0",
+  "org.dispatchhttp" % "dispatch-core_2.12" % "1.0.0-M1",
+  "com.typesafe" % "config" % "1.3.2",
+
 
   "org.scalatest" %% "scalatest" % "3.0.4" % Test
 )
