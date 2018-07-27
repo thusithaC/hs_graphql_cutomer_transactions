@@ -12,9 +12,13 @@ import Console._
 import scala.concurrent.Await
 import scala.language.postfixOps
 
+import com.typesafe.config.ConfigFactory
+
 object Server extends App {
 
-  val PORT = 8080
+  val conf = ConfigFactory.load()
+
+  val PORT = conf.getInt("web.port")
 
   implicit val actorSystem = ActorSystem("graphql-server")
   implicit val materializer = ActorMaterializer()
