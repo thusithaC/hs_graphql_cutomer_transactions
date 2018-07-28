@@ -1,0 +1,41 @@
+# The `BigDecimal` scalar type represents signed fractional values with arbitrary precision.
+scalar BigDecimal
+
+type Customer {
+  customerId: String!
+  forename: String!
+  surname: String!
+  accounts: [String!]!
+}
+
+type Query {
+  # Returns accounts for a given  `customerId`.
+  accountsOfCustomer(customerId: String!): [String!]!
+
+  # get transactions for a given account `accountId`.
+  transactionsOfAccount(accountId: String!): [Transaction!]!
+
+  # get transactions for a given customer `customerId`.
+  transactionsOfCustomer(customerId: String!): [Transaction!]!
+
+  # get all transactions
+  allTransactions: [Transaction!]!
+
+  # get all customers
+  allCustomers: [Customer!]!
+
+  # get transactions by an id `transactionId`.
+  transactionById(transactionId: String!): Transaction
+
+  # get customer by an id `customerId`.
+  customerById(customerId: String!): Customer
+}
+
+type Transaction {
+  transactionId: String!
+  accountId: String!
+  transactionDay: Int!
+  category: String!
+  transactionAmount: BigDecimal!
+}
+

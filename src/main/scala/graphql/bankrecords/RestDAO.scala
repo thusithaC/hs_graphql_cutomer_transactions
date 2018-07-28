@@ -78,7 +78,7 @@ class RestDAO {
   }
 
   def getTransactionById(transactionId : String) : Option[Transaction] = {
-    val urlPath = customersService + transactionByIdPath
+    val urlPath = transactionsService + transactionByIdPath
     Logger.info(s" ${urlPath} with transactionId ${transactionId}")
     val queryProperties = Map("transactionId" -> transactionId)
     resultBuilder[Transaction](urlPath, queryProperties, read[Transaction])
