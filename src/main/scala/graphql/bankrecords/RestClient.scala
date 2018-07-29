@@ -13,11 +13,6 @@ import org.asynchttpclient.Response
 import scala.concurrent.Await
 import scala.language.postfixOps
 
-object RestClient {
-
-}
-
-
 class HTTPGetRequest(val urlString : String, queryParams : Map[String, String]) {
 
   private val request = url(urlString)
@@ -31,25 +26,6 @@ class HTTPGetRequest(val urlString : String, queryParams : Map[String, String]) 
 
   private val builtRequest = queryBuilder(queryParams.toList, requestAsGet)
 
-  def get(f: String=>Any) = {
-    val content = Http.default(builtRequest)
-
-    content onSuccess {
-
-      case x if x.getStatusCode() == 200 =>
-        Logger.info("Rest api call success")
-        f(x.getResponseBody)
-      case y =>
-        Logger.error(s"Failed with status code ${y.getStatusCode()}" )
-    }
-
-    content onFailure {
-      case x =>
-        Logger.error("Failed but")
-        Logger.error(x.getMessage)
-    }
-  }
-
   def getSync(waitMiliSec: Long): Option[String] = {
     import scala.concurrent.duration._
     Logger.info(s"sending request ${builtRequest.toString}")
@@ -61,6 +37,5 @@ class HTTPGetRequest(val urlString : String, queryParams : Map[String, String]) 
     }
     Await.result(response, waitMiliSec millis)
   }
-
-
+  
 }

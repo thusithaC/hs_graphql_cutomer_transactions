@@ -30,7 +30,6 @@ object GraphQLServer {
       case JsString(op) ⇒ op
     }
 
-
     val vars = fields.get("variables") match {
       case Some(obj: JsObject) => obj
       case _ => JsObject.empty

@@ -5,8 +5,6 @@ package graphql.bankrecords
   */
 
 
-//case class Account(accountId : String, customerId: String, transactions: List[Transaction])
-
 case class Transaction(transactionId : String,
                        accountId : String,
                        transactionDay : Int,
